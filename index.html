@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyblock Tasker</title>
+    <style>
+        /* Le style visuel (CSS) */
+        body {
+            background-color: #1e1e24;
+            /* Gris très foncé */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #ffaa00;
+            /* Or (Gold) classique de Minecraft */
+        }
+
+        .task-box {
+            background-color: #2b2b36;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 500px;
+            border: 2px solid #555;
+            font-size: 22px;
+            min-height: 50px;
+        }
+
+        button {
+            background-color: #55ff55;
+            /* Vert (Green) Minecraft */
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #3ce63c;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚔️ Skyblock Ironman Tasker ⚔️</h1>
+    <p>Ne choisis plus tes objectifs. Laisse le destin décider.</p>
+
+    <div class="task-box" id="affichageTache">
+        Clique sur le bouton pour tirer ta première tâche !
+    </div>
+
+    <button id="boutonRoll">🎲 Roll une tâche (Tier Facile)</button>
+
+    <div class="footer">
+        Not affiliated with or endorsed by Hypixel.
+    </div>
+
+    <script>
+        // On crée une fausse liste de tâches en attendant la vraie API
+        const tachesFactices = [
+            "Atteindre la collection Blé Tier 5 🌾",
+            "Faire don de l'armure Lapis au Museum 💎",
+            "Tuer 500 Crypt Ghouls 🧟",
+            "Crafter un Minion de Fer Tier 4 ⛏️",
+            "Débloquer la zone 'The End' 🌌"
+        ];
+
+        // On sélectionne le bouton et la boîte de texte
+        const bouton = document.getElementById("boutonRoll");
+        const affichage = document.getElementById("affichageTache");
+
+        // Que se passe-t-il quand on clique sur le bouton ?
+        bouton.addEventListener("click", () => {
+            // Effet visuel pendant qu'on "cherche"
+            affichage.innerText = "Recherche en cours...";
+
+            // On simule un petit délai (comme si on interrogeait l'API)
+            setTimeout(() => {
+                // On tire un nombre au hasard
+                const indexAleatoire = Math.floor(Math.random() * tachesFactices.length);
+                // On affiche la tâche
+                affichage.innerText = "🎯 Tâche actuelle :\n" + tachesFactices[indexAleatoire];
+            }, 500); // Attend une demi-seconde
+        });
+    </script>
+</body>
+
+</html>
