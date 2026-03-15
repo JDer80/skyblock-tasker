@@ -1,106 +1,87 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skyblock Tasker</title>
-    <style>
-        /* Le style visuel (CSS) */
-        body {
-            background-color: #1e1e24;
-            /* Gris très foncé */
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-
-        h1 {
-            color: #ffaa00;
-            /* Or (Gold) classique de Minecraft */
-        }
-
-        .task-box {
-            background-color: #2b2b36;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 30px auto;
-            max-width: 500px;
-            border: 2px solid #555;
-            font-size: 22px;
-            min-height: 50px;
-        }
-
-        button {
-            background-color: #55ff55;
-            /* Vert (Green) Minecraft */
-            color: #000;
-            border: none;
-            padding: 15px 30px;
-            font-size: 20px;
-            cursor: pointer;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        button:hover {
-            background-color: #3ce63c;
-            transform: scale(1.05);
-        }
-
-        .footer {
-            margin-top: 50px;
-            font-size: 12px;
-            color: #888;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <h1>⚔️ Skyblock Ironman Tasker ⚔️</h1>
-    <p>Ne choisis plus tes objectifs. Laisse le destin décider.</p>
+    <p>Don't choose your goals. Let destiny decide.</p>
 
-    <div class="task-box" id="affichageTache">
-        Clique sur le bouton pour tirer ta première tâche !
+    <div class="stats-bar">
+        <span>🏆 Tasks: <span id="compteurTaches">0</span></span>
+        <span>🔄 Rerolls: <span id="compteurRerolls">0</span></span>
+        <span>📦 Backlog: <span id="backlogSlots">0/0</span></span>
     </div>
 
-    <button id="boutonRoll">🎲 Roll une tâche (Tier Facile)</button>
+    <div class="task-box" id="affichageTache">
+        Click the button to roll new tasks!
+    </div>
+
+    <button id="boutonRoll">🎲 Roll new tasks</button>
+
+    <div id="backlog-section" class="stats-container cacher">
+        <h3>📦 My Backlog Tasks</h3>
+        <div id="backlog-content">
+            <!-- Backlog tasks will appear here -->
+        </div>
+    </div>
+
+    <div class="options-box">
+        <h3>⚙️ Options</h3>
+
+        <div class="option-row">
+            <label for="inputReroll">Tasks required for 1 Reroll:</label>
+            <input type="number" id="inputReroll" min="1" max="100" value="20">
+        </div>
+
+        <div class="option-row">
+            <label for="inputNbTaches">Number of tasks rolled at once:</label>
+            <input type="number" id="inputNbTaches" min="1" max="10" value="2">
+        </div>
+
+        <div class="option-row">
+            <label for="inputBacklogCost">Backlog slot cost (Rerolls):</label>
+            <input type="number" id="inputBacklogCost" min="1" max="50" value="15">
+        </div>
+
+        <button id="boutonSauvegarderOptions">Save options</button>
+        <button id="boutonBuySlot">🛒 +1 Backlog Slot (15 Rerolls)</button>
+
+        <hr> <button id="boutonReset"
+            style="background-color: #ff4444; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-weight: bold;">
+            ⚠️ Reset all progress
+        </button>
+    </div>
+
+    <div id="stats-section" class="stats-container">
+        <h3>📊 Tier Progression</h3>
+        <div id="stats-content">
+            <p>Loading statistics...</p>
+        </div>
+    </div>
+
+    <div id="rules-section" class="stats-container">
+        <h3>📜 Challenge Rules (Tasker Mode)</h3>
+        <ul class="rules-list">
+            <li>🎯 <strong>Minimal Unlocks</strong>: Complete tasks using existing gear or by unlocking only what is strictly necessary.</li>
+            <li>🤝 <strong>Duo Progress</strong>: If a reward is not shared (skills, solo items), each player must obtain it individually.</li>
+            <li>🚫 <strong>No Pre-farming</strong>: Never intentionally farm items or progress for future tiers or tasks.</li>
+            <li>💎 <strong>Loot Retention</strong>: You may keep everything you drop, even if it is not immediately useful yet.</li>
+            <li>📦 <strong>Backlog Usage</strong>: Reserved for tasks that are temporarily impossible (Events, cooldowns, timelocks).</li>
+            <li>📈 <strong>Tier Order</strong>: Strict progression. You must finish the current tier before rolling tasks from the next tier.</li>
+        </ul>
+    </div>
 
     <div class="footer">
         Not affiliated with or endorsed by Hypixel.
     </div>
 
-    <script>
-        // On crée une fausse liste de tâches en attendant la vraie API
-        const tachesFactices = [
-            "Atteindre la collection Blé Tier 5 🌾",
-            "Faire don de l'armure Lapis au Museum 💎",
-            "Tuer 500 Crypt Ghouls 🧟",
-            "Crafter un Minion de Fer Tier 4 ⛏️",
-            "Débloquer la zone 'The End' 🌌"
-        ];
-
-        // On sélectionne le bouton et la boîte de texte
-        const bouton = document.getElementById("boutonRoll");
-        const affichage = document.getElementById("affichageTache");
-
-        // Que se passe-t-il quand on clique sur le bouton ?
-        bouton.addEventListener("click", () => {
-            // Effet visuel pendant qu'on "cherche"
-            affichage.innerText = "Recherche en cours...";
-
-            // On simule un petit délai (comme si on interrogeait l'API)
-            setTimeout(() => {
-                // On tire un nombre au hasard
-                const indexAleatoire = Math.floor(Math.random() * tachesFactices.length);
-                // On affiche la tâche
-                affichage.innerText = "🎯 Tâche actuelle :\n" + tachesFactices[indexAleatoire];
-            }, 500); // Attend une demi-seconde
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

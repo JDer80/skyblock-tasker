@@ -1,0 +1,275 @@
+body {
+    background-color: #1e1e24;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    color: #ffaa00;
+}
+
+.task-box {
+    background-color: #2b2b36;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 500px;
+    border: 2px solid #555;
+    font-size: 18px;
+    min-height: 50px;
+    text-align: left;
+}
+
+button {
+    background-color: #55ff55;
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #3ce63c;
+    transform: scale(1.05);
+}
+
+.footer {
+    margin-top: 50px;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Le style du nouveau bouton Terminer */
+#boutonTerminer {
+    background-color: #55aaff;
+    /* Bleu clair */
+}
+
+#boutonTerminer:hover {
+    background-color: #3388ee;
+}
+
+#boutonBacklog {
+    background-color: #9b59b6; /* Améthyste / Violet */
+    color: white;
+}
+
+#boutonBacklog:hover {
+    background-color: #8e44ad;
+}
+
+/* Une classe magique pour cacher un élément */
+.cacher {
+    display: none !important;
+}
+
+/* NOUVEAU : La barre de statistiques */
+.stats-bar {
+    background-color: #2b2b36;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 0 auto 20px auto;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #555;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* NOUVEAU : Le bouton Reroll */
+#boutonReroll {
+    background-color: #ffaa00;
+    /* Or / Orange */
+    margin-top: 10px;
+}
+
+#boutonReroll:hover {
+    background-color: #ff8800;
+}
+
+/* NOUVEAU : Le style du menu d'options */
+.options-box {
+    background-color: #23232c;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 40px auto 10px auto;
+    max-width: 500px;
+    border: 1px dashed #555;
+    text-align: left;
+    font-size: 16px;
+}
+
+.options-box h3 {
+    margin-top: 0;
+    color: #aaaaff;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.options-box input {
+    background-color: #1e1e24;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px;
+    border-radius: 4px;
+    width: 60px;
+    text-align: center;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+#boutonSauvegarderOptions {
+    background-color: #444;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 14px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+#boutonSauvegarderOptions:hover {
+    background-color: #666;
+    transform: none;
+    /* Désactive le zoom sur ce petit bouton */
+}
+
+#boutonBuySlot {
+    background-color: #e67e22; /* Carotte / Orange */
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 14px;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#boutonBuySlot:hover {
+    background-color: #d35400;
+}
+
+/* Alignement pour les nouvelles options */
+.option-row {
+    margin-bottom: 15px;
+}
+
+.options-box hr {
+    border-color: #444;
+    margin: 20px 0 15px 0;
+}
+
+#boutonReset:hover {
+    background-color: #ff1111 !important;
+}
+
+.stats-container {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #2c2f33; /* Couleur de fond sombre */
+    border-radius: 10px;
+    border: 2px solid #7289da; /* Bordure colorée sympa */
+    color: #ffffff;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.stats-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4f545c;
+    text-align: center;
+}
+
+.stat-tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1.1em;
+}
+
+.stat-tier span {
+    font-weight: bold;
+    color: #43b581; /* Vert pour la complétion */
+}
+
+.active-task-item {
+    background-color: #2b2b36;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #55ff55;
+}
+
+.active-task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.active-task-actions button {
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+.btn-done { background-color: #55aaff !important; }
+.btn-backlog { background-color: #9b59b6 !important; color: white !important; }
+
+.backlog-item {
+    background-color: #36393f;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #9b59b6;
+}
+
+.backlog-item button {
+    padding: 5px 12px;
+    font-size: 14px;
+    background-color: #43b581;
+}
+
+/* --- 8. SECTION RÈGLES --- */
+.rules-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.rules-list li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 0.95em;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+.rules-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #55ff55;
+    font-weight: bold;
+}
+
+.rules-list strong {
+    color: #55aaff;
+}
+
