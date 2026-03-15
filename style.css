@@ -272,4 +272,24 @@ button:hover {
 .rules-list strong {
     color: #55aaff;
 }
+
+.sub-rules {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.sub-rules li {
+    font-size: 0.85em;
+    margin-bottom: 5px;
+    color: #aaa;
+}
+
+.sub-rules li::before {
+    content: "▫️";
+    position: absolute;
+    left: 0;
+    color: #55ff55;
+    font-size: 0.8em;
+}
 
